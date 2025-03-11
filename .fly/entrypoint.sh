@@ -21,12 +21,6 @@ fi
 # Generate app key if not set
 php /var/www/html/artisan key:generate --force
 
-# Run migrations (sqlite might not need connection check)
-php /var/www/html/artisan migrate --force
-
-# Run seeds
-php /var/www/html/artisan db:seed --force
-
 # Start PHP-FPM
 php-fpm -D
 
