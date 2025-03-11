@@ -1,23 +1,13 @@
 <script setup lang="ts">
-import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link, router } from '@inertiajs/vue3';
-import PlaceholderPattern from '../components/PlaceholderPattern.vue';
 import AccountLookupModal from '@/components/AccountLookupModal.vue';
 import { ref, onMounted } from 'vue';
-
-const breadcrumbs: BreadcrumbItem[] = [
-    {
-        title: 'Dashboard',
-        href: '/dashboard',
-    },
-];
 
 interface Props {
     lookupAccount?: string;
 }
 
-const props = defineProps<Props>();
 const showModal = ref(false);
 const accountId = ref<string | null>(null);
 

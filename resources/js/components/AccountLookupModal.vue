@@ -21,6 +21,7 @@ onMounted(async () => {
         account.value = response.data.account;
         transactions.value = response.data.transactions;
     } catch (e) {
+        console.error(e);
         error.value = "Unable to load account details";
     } finally {
         loading.value = false;
