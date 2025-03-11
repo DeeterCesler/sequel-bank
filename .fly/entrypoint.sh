@@ -1,15 +1,7 @@
-#!/usr/bin/env sh
+#!/bin/bash
 
-# Run user scripts, if they exist
-for f in /var/www/html/.fly/scripts/*.sh; do
-    # Bail out this loop if any script exits with non-zero status code
-    bash "$f" -e
-done
-chown -R www-data:www-data /var/www/html
+cd /var/www/html
+php artisan migrate --force
 
-if [ $# -gt 0 ]; then
-    # If we passed a command, run it as root
-    exec "$@"
-else
-    exec supervisord -c /etc/supervisor/supervisord.conf
-fi
+# Start the PHP server on the correct port and interface
+php artisan serve --host=0.0.0.0 --port=8080
