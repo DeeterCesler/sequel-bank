@@ -11,6 +11,13 @@ if [ ! -f /var/www/html/.env ]; then
   echo "APP_KEY=" > /var/www/html/.env
 fi
 
+FOLDER=/var/www/html/storage/database
+if [ ! -d "$FOLDER" ]; then
+    echo "$FOLDER is not a directory, initializing database" 
+    mkdir /var/www/html/storage/database
+    touch /var/www/html/storage/database/database.sqlite
+fi
+
 # Generate app key if not set
 php /var/www/html/artisan key:generate --force
 

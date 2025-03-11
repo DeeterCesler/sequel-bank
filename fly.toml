@@ -21,6 +21,9 @@ console_command = 'php /var/www/html/artisan tinker'
   SESSION_SECURE_COOKIE = 'true'
   APP_URL = "https://sequel-bank.fly.dev"
   ASSET_URL = "https://sequel-bank.fly.dev"
+  DB_CONNECTION="sqlite"
+  DB_DATABASE="/var/www/html/storage/database/database.sqlite"
+
 
 [http_service]
   internal_port = 8080
