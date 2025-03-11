@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Artisan;
 use Inertia\Inertia;
 
 Route::get('/', function () {
@@ -20,6 +19,11 @@ Route::get('account/{number}', function ($number) {
 })->middleware(['auth', 'verified'])->name('account.lookup');
 
 Route::get('/accounts/{number}', [App\Http\Controllers\AccountController::class, 'show']);
+
+Route::get('/reset', function () {
+    Artisan::call('db:seed', ['--force' => true]);
+    return redirect()->route('home');
+});
 
 
 require __DIR__.'/settings.php';
