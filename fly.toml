@@ -34,8 +34,5 @@ console_command = 'php /var/www/html/artisan tinker'
   cpus = 1
 
 [mounts]
-  [mounts.database]
-    path = '/var/www/html/database'
-    destination = "/var/www/html/database"
-    writable = true
-    source = 'sqlite_data'
+  destination = "/var/www/html/database"
+  source = "sqlite_data"
