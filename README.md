@@ -17,7 +17,7 @@ If you don't like this, you can change it in the `users` table or in DatabaseSee
 
 ### Demo:
 
-(future demo site goes here)
+Visit [https://sequel-bank.fly.dev/](https://sequel-bank.fly.dev/) and play around.
 
 ### Notes
 
