@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for bank-sql-injection-small-field-9002 on 2025-03-11T10:00:53-04:00
+# fly.toml app configuration file generated for sequel-bank on 2025-03-11T10:00:53-04:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'bank-sql-injection-small-field-9002'
+app = 'sequel-bank'
 primary_region = 'iad'
 console_command = 'php /var/www/html/artisan tinker'
 
@@ -32,3 +32,10 @@ console_command = 'php /var/www/html/artisan tinker'
   memory = '1gb'
   cpu_kind = 'shared'
   cpus = 1
+
+[mounts]
+  [mounts.database]
+    path = '/var/www/html/database'
+    destination = "/var/www/html/database"
+    writable = true
+    source = 'sqlite_data'
