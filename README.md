@@ -29,18 +29,36 @@ This database is *supposed* to be experimented on, so don't worry if you break i
 The DB resets every day so you don't need to clean up after yourself.
 
 
->! Spoiler: these are hints. !<
+### Spoiler: these are hints.
 
->! 1. Log in first. It's not on the first page. !<
+<details>
+    
+1. Log in first. It's not on the first page.
 
->! 2. Click around on the account page once you're logged in. !<
+2. Click around on the account page once you're logged in.
 
->! 3. Pay attention to the URL. !<
+</details>
 
->! I'm about to give you a big hint. Be forewarned. !<
 
->! 4. Click the "View Account" button, and pay attention to the URL. !<
 
->! I'm about to essentially give away the answer. Last chance. !<
+### More spoilers:
 
->! 6. Here's one sample URL injection: `/dashboard?account=1%20or%201=1` !<
+<details>
+    
+3. Pay attention to the URL as you click around.
+
+</details>
+
+
+
+### I'm about to essentially give away the answer. Last chance.
+
+<details>    
+
+4. Click the "View Account" Button and notice the URL change.
+
+5. You can try adding things to the URL and re-entering as a way to submit the SQL injection.
+
+6. Here's one sample URL injection: `/dashboard?account=1%20or%201=1`
+    
+</details>
