@@ -6,7 +6,7 @@ use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tighten\Ziggy\Ziggy;
-
+use Illuminate\Support\Facades\Log;
 class HandleInertiaRequests extends Middleware
 {
     /**
@@ -49,7 +49,29 @@ class HandleInertiaRequests extends Middleware
             'ziggy' => [
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),
+                'defaults' => [
+                    'login' => '/',
+                ],
             ],
         ];
+    }
+
+    /**
+     * Handle the incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return \Illuminate\Http\Response
+     */
+    public function handle(Request $request, \Closure $next)
+    {
+        // Unauthenticated users can only access / and login from there
+        if (!$request->user() && 
+            !$request->routeIs('home') && 
+            !($request->isMethod('post') && $request->is('login'))) {
+            return redirect()->route('home');
+        }
+
+        return parent::handle($request, $next);
     }
 }
