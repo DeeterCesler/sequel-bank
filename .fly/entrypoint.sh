@@ -6,6 +6,11 @@ mkdir -p /var/www/html/storage/logs
 chmod -R 775 /var/www/html/storage
 chown -R www-data:www-data /var/www/html/storage
 
+# Create minimal .env file if it doesn't exist
+if [ ! -f /var/www/html/.env ]; then
+  echo "APP_KEY=" > /var/www/html/.env
+fi
+
 # Generate app key if not set
 php /var/www/html/artisan key:generate --force
 
