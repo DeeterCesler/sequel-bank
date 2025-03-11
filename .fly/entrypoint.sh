@@ -1,23 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -e
 
-cd /var/www/html
+# Run migrations
 php artisan migrate --force
 
-# Create directory for PHP-FPM socket if it doesn't exist
-mkdir -p /var/run/php
-
-# Start PHP-FPM
-service php8.2-fpm start
-
-# Wait for PHP-FPM to create the socket
-while [ ! -S /var/run/php/php-fpm.sock ]; do
-    echo "Waiting for PHP-FPM socket..."
-    sleep 1
-done
-
-# Ensure correct permissions
-chmod 660 /var/run/php/php-fpm.sock
-chown www-data:www-data /var/run/php/php-fpm.sock
-
-# Start Nginx
-nginx
+# Start PHP-FPM and Nginx
+php-fpm -D
+nginx -g "daemon off;"
