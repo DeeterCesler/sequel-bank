@@ -67,6 +67,9 @@ RUN composer install --optimize-autoloader --no-dev \
     ' bootstrap/app.php; \ 
     if [ -d .fly ]; then cp .fly/entrypoint.sh /entrypoint; chmod +x /entrypoint; fi;
 
+# Create database file if it doesn't exist
+RUN touch database/database.sqlite && \
+chown www-data:www-data database/database.sqlite
 
 
 

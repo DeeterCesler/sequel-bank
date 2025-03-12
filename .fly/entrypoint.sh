@@ -16,10 +16,17 @@ if [ ! -d "$FOLDER" ]; then
     echo "$FOLDER is not a directory, initializing database" 
     mkdir /var/www/html/storage/database
     touch /var/www/html/storage/database/database.sqlite
+    chown www-data:www-data /var/www/html/storage/database/database.sqlite
 fi
 
 # Generate app key if not set
 php /var/www/html/artisan key:generate --force
+
+# Run migrations
+php /var/www/html/artisan migrate --force
+
+# Run seeds
+php /var/www/html/artisan db:seed --force
 
 # Start PHP-FPM
 php-fpm -D
