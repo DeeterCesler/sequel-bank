@@ -4,10 +4,10 @@ use App\Models\User;
 
 uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
-test('login screen can be rendered', function () {
+test('login screen redirects to home', function () {
     $response = $this->get('/login');
 
-    $response->assertStatus(200);
+    $response->assertRedirect('/');
 });
 
 test('users can authenticate using the login screen', function () {
