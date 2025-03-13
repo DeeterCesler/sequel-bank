@@ -22,6 +22,13 @@ Route::get('/accounts/{number}', [App\Http\Controllers\AccountController::class,
 
 Route::get('/reset', function () {
     Artisan::call('db:seed', ['--force' => true]);
+    
+    // Check if request wants JSON response (from cron job)
+    if (request()->wantsJson() || request()->header('User-Agent') && str_contains(request()->header('User-Agent'), 'cron-job.org')) {
+        return response()->json(['success' => true]);
+    }
+    
+    // Otherwise redirect (for browser users)
     return redirect()->route('home');
 });
 
