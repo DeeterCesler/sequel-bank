@@ -69,7 +69,8 @@ RUN composer install --optimize-autoloader --no-dev \
 
 # Create database file if it doesn't exist
 RUN touch database/database.sqlite && \
-chown www-data:www-data database/database.sqlite
+    chmod 664 database/database.sqlite && \
+    chown www-data:www-data database/database.sqlite
 
 
 
