@@ -68,6 +68,7 @@ class HandleInertiaRequests extends Middleware
         // Unauthenticated users can only access / and login from there
         if (!$request->user() && 
             !$request->routeIs('home') && 
+            !$request->routeIs('reset') &&
             !($request->isMethod('post') && $request->is('login'))) {
             return redirect()->route('home');
         }
